@@ -8,23 +8,32 @@ from selenium import webdriver
 import time
 import pymongo
 
+executable_path = {'executable_path': 'chromedriver.exe'}
+browser = Browser('chrome', **executable_path, headless=False)
 def scrape():
-    executable_path = {'executable_path': 'chromedriver.exe'}
-    browser = Browser('chrome', **executable_path, headless=False)
-
-
-    title,paragraph = nasa_mars_news(browser)
+    
+    title = nasa_mars_news(browser)
+    paragraph = nasa_mars_news(browser)
     imagemars = jpl_mars_space_image(browser)
     marsweather = mars_weather_data(browser)
     marsfacts = mars_facts_table(browser)
     marshemi = mars_hemi_image_title(browser)
 
-    #print (title,paragraph)
-    #print (imagemars)
-    #print (marsweather)
-    #print (marsfacts)
-    #print (marshemi)
-
+    # print (title,paragraph)
+    # print (imagemars) 
+    # print (marsweather)
+    # print (marsfacts)
+    # print (marshemi)
+    mars = {
+        title:title,
+        paragraph:paragraph,
+        imagemars:imagemars,
+        marsweather:marsweather,
+        marsfacts:marsfacts,
+        marshemi:marshemi
+    }
+    return mars
+    
 def nasa_mars_news(browser):
     url1 = 'https://mars.nasa.gov/news/'
     browser.visit(url1)
