@@ -25,13 +25,14 @@ def scrape():
     # print (marsfacts)
     # print (marshemi)
     mars = {
-        title:title,
-        paragraph:paragraph,
-        imagemars:imagemars,
-        marsweather:marsweather,
-        marsfacts:marsfacts,
-        marshemi:marshemi
+        "title":title,
+        "paragraph":paragraph,
+        "imagemars":imagemars,
+        "marsweather":marsweather,
+        "marsfacts":marsfacts,
+        "marshemi":marshemi
     }
+    
     return mars
     
 def nasa_mars_news(browser):
@@ -40,7 +41,7 @@ def nasa_mars_news(browser):
     news_string = browser.html
     soup = bs(news_string, 'html.parser')
     news_title = soup.find("div",class_="content_title").text
-    news_p = soup.find("div", class_="rollover_description_inner").text
+    news_p = soup.find("div", class_="article_teaser_body").text
     return news_title,news_p
 
 
@@ -87,6 +88,5 @@ def mars_hemi_image_title(browser):
         hemi_dict["title"]=browser.find_by_css("h2.title").text
         hemisphere_image_url.append(hemi_dict)
         browser.back()
-    hemisphere_image_url
     return hemisphere_image_url
-scrape()
+

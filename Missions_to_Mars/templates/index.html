@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name ="viewport" content ="width=device-width", initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron text-center">
+          <h1>Mission to Mars</h1>
+          <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        </div>
+    
+        <div class="row" id="marsnews">
+            <h3><strong>Latest Mars News</strong></h3>
+            <h4>{{mars.title[0]}}</h4>
+            <p>{{mars.paragraph[1]}}</p>
+            <br>
+
+        <div class ="row" id="marsimage">
+                <div class = "col-md-8">
+                    <h2><strong>Featured Mars Image</strong></h2>
+                    <img width ="750px" src = "{{mars.imagemars}}" alt ="Mars Image">
+                </div>
+                <div class = "col-md-4" id="marsfacts, marsweather">
+                        <h4><strong>Current Weather on Mars</strong></h4>
+                        <p>{{mars.marsweather}}</p>
+                        <br>
+                        <br>
+                        <h4><strong>Mars Facts</strong></h4>
+                        <p>{{mars.marsfacts | safe}}</p>
+                    </div>
+          </div>
+          <div class="col-md-12">
+              {%for i in mars.marshemi %} 
+              <h3>{{i.title}}</h3>
+              <img width="400px" src="{{i.img_url}}" alt="">
+              {%endfor%} 
+          </div>
+        </div>
+      </div>
+</body>
+</html>
